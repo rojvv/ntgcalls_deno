@@ -4,9 +4,9 @@ Deno bindings for [ntgcalls](https://github.com/pytgcalls/ntgcalls).
 
 ## Usage
 
-This example uses [MTKruto](https://github.com/MTKruto/MTKruto) to create a user
-client, join the group call in the chat `@foobar`, and stream an audio file
-called `output.pcm`.
+This example uses [MTKruto](https://github.com/MTKruto/MTKruto) to start a user
+client, join the group call in the chat @foobar, and stream an audio file called
+output.pcm.
 
 ```ts
 import {
