@@ -1,6 +1,6 @@
 # ntgcalls_deno
 
-Deno bindings for ntgcalls.
+Deno bindings for [ntgcalls](https://github.com/pytgcalls/ntgcalls).
 
 ## Usage
 
