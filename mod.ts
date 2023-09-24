@@ -135,9 +135,23 @@ const lib = Deno.dlopen(`libntgcalls.${ext}`, {
   ntg_mute: { parameters: ["u32", "i64"], result: "i32" },
   ntg_unmute: { parameters: ["u32", "i64"], result: "i32" },
   ntg_stop: { parameters: ["u32", "i64"], result: "i32" },
+  ntg_get_version: { parameters: ["buffer", "i32"], result: "i32" },
 });
 
 const BUFFER_LEN = 4096;
+const VERSION = "1.0.0.17\0";
+
+function getVersion() {
+  const params = new Uint8Array(BUFFER_LEN);
+  const length = lib.symbols.ntg_get_version(params, params.byteLength);
+  if (length < 1) {
+    throw new NTCallsError(length);
+  }
+  return new TextDecoder().decode(params.slice(0, length));
+}
+if (getVersion() != VERSION) {
+  throw new Error("Version mismatch");
+}
 
 export class NTCallsError extends Error {
   constructor(public readonly code: number) {
